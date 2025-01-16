@@ -12,7 +12,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.springbootdependencies.version>3.0.0</project.springbootdependencies.version>
+    <springbootdependencies.version>3.0.0</springbootdependencies.version>
   </properties>
 
   <modules>
@@ -23,7 +23,7 @@
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-dependencies</artifactId>
-        <version>${project.springbootdependencies.version}</version>
+        <version>${springbootdependencies.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
