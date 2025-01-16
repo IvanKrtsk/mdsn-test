@@ -12,13 +12,14 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <springbootdependencies.version>3.0.0</springbootdependencies.version>
+    <springbootdependencies.version>3.4.1</springbootdependencies.version>
   </properties>
 
   <modules>
-    <module>book-storage-service</module>
     <module>discovery-server</module>
     <module>api-gateway</module>
+    <module>book-storage-service</module>
+    <module>book-tracker-service</module>
   </modules>
   <dependencyManagement>
     <dependencies>
