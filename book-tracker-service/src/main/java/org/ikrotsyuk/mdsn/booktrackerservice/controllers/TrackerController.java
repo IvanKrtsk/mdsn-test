@@ -1,14 +1,14 @@
-package org.ikrotsyuk.mdsn.bookstorageservice.controller;
+package org.ikrotsyuk.mdsn.booktrackerservice.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/book-storage")
-public class StorageController {
-    @GetMapping("/sayhey")
+@RequestMapping("/book-tracker")
+public class TrackerController {
+    @GetMapping("/saybye")
     public String say(){
-        return "hey";
+        return "bye";
     }
 }
