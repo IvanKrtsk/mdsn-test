@@ -2,6 +2,7 @@ package org.ikrotsyuk.mdsn.bookstorageservice.controllers;
 
 import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Pattern;
 import org.ikrotsyuk.mdsn.bookstorageservice.dto.SimpleBookDTO;
 import org.ikrotsyuk.mdsn.bookstorageservice.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,18 +35,17 @@ public class StorageController {
     }
 
     @GetMapping("/bookisbn/{isbn}")
-    public ResponseEntity<?> getBookByISBN(@PathVariable @Parameter(description = "book isbn", example = "978-0-060-93546-7") String isbn){
+    public ResponseEntity<?> getBookByISBN(@PathVariable @Pattern(regexp = "^978-[0-9]{1}-[0-9]{3}-[0-9]{5}-[0-9]$", message = "Incorrect format (use ISBN-13)") @Parameter(description = "book isbn", example = "978-0-060-93546-7") String isbn){
         return ResponseEntity.ok(storageService.getBookByISBN(isbn));
     }
 
     @PatchMapping("/update/{isbn}")
-    public ResponseEntity<?> updateBookByISBN(@PathVariable @Parameter(description = "book isbn", example = "978-0-060-93546-7") String isbn, @RequestBody @Valid SimpleBookDTO simpleBookDTO){
+    public ResponseEntity<?> updateBookByISBN(@PathVariable @Pattern(regexp = "^978-[0-9]{1}-[0-9]{3}-[0-9]{5}-[0-9]$", message = "Incorrect format (use ISBN-13)") @Parameter(description = "book isbn", example = "978-0-060-93546-7") String isbn, @RequestBody @Valid SimpleBookDTO simpleBookDTO){
         return ResponseEntity.ok(storageService.updateBookInfo(isbn, simpleBookDTO));
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteBookByISBN(@PathVariable @Parameter(description = "book id") int id){
-        storageService.deleteBook(id);
-        return ResponseEntity.ok("success");
+        return ResponseEntity.ok(storageService.deleteBook(id));
     }
 }

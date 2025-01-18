@@ -10,8 +10,14 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface BookMapper {
-    @Mapping(target = "isDeleted", ignore = true)
+    @Mapping(target = "isDeleted", ignore = true, defaultValue = "false")
     BookEntity toEntity(BookDTO bookDTO);
+
+    default BookEntity toEntityWithDefault(BookDTO bookDTO) {
+        BookEntity bookEntity = toEntity(bookDTO);
+        bookEntity.setIsDeleted(false); // Установите начальное значение здесь
+        return bookEntity;
+    }
 
     BookDTO toDTO(BookEntity bookEntity);
 

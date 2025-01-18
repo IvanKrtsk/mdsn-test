@@ -1,9 +1,6 @@
 package org.ikrotsyuk.mdsn.bookstorageservice.exception;
 
-import org.ikrotsyuk.mdsn.bookstorageservice.exception.exceptions.BookNotFoundByISBNException;
-import org.ikrotsyuk.mdsn.bookstorageservice.exception.exceptions.BookNotFoundByIdException;
-import org.ikrotsyuk.mdsn.bookstorageservice.exception.exceptions.BookWithSameISBNFoundException;
-import org.ikrotsyuk.mdsn.bookstorageservice.exception.exceptions.BooksNotFoundException;
+import org.ikrotsyuk.mdsn.bookstorageservice.exception.exceptions.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -45,5 +42,10 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BooksNotFoundException.class)
     public ResponseEntity<String> handleBooksNotFoundException(BooksNotFoundException ex){
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(BookIsDeletedException.class)
+    public ResponseEntity<String> handleBookIsDeletedException(BookIsDeletedException ex){
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT);
     }
 }
