@@ -10,7 +10,7 @@ public class AvailableBookDTO {
     @Schema(description = "book id")
     private int id;
     @Schema(description = "is the book available")
-    private boolean isAvailable;
+    private boolean isBookAvailable;
     @Schema(description = "time of taking")
     private LocalDateTime borrowedAt;
     @Schema(description = "time by which it is necessary to return")

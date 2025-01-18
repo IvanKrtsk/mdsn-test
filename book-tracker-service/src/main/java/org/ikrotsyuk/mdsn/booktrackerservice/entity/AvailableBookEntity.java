@@ -25,7 +25,7 @@ public class AvailableBookEntity {
     private int id;
     @Schema(description = "is the book available")
     @Column(name = "is_available")
-    private boolean isAvailable;
+    private boolean isBookAvailable;
     @Schema(description = "time of taking")
     @Column(name = "borrowed_at")
     private LocalDateTime borrowedAt;

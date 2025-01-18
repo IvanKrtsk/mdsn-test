@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+
 @RestController
 @RequestMapping("/book-tracker")
 public class TrackerController {
@@ -15,17 +17,17 @@ public class TrackerController {
     }
 
     @PatchMapping("/take/{id}")
-    public ResponseEntity<?> takeBook(@PathVariable int id){
-        return ResponseEntity.ok("take");
+    public ResponseEntity<?> takeBook(@PathVariable int id, @RequestParam LocalDateTime returnBy){
+        return ResponseEntity.ok(trackerService.takeBook(id, returnBy));
     }
 
     @PatchMapping("/return{id}")
     public ResponseEntity<?> returnBook(@PathVariable int id){
-        return ResponseEntity.ok("return");
+        return ResponseEntity.ok(trackerService.returnBook(id));
     }
 
     @GetMapping("/all")
     public ResponseEntity<?> getAvailableBooks(){
-        return ResponseEntity.ok("all books");
+        return ResponseEntity.ok(trackerService.getAvailableBooks());
     }
 }
