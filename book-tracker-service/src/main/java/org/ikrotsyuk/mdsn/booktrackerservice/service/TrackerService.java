@@ -1,11 +1,9 @@
 package org.ikrotsyuk.mdsn.booktrackerservice.service;
 
+import jakarta.transaction.Transactional;
 import org.ikrotsyuk.mdsn.booktrackerservice.dto.AvailableBookDTO;
 import org.ikrotsyuk.mdsn.booktrackerservice.entity.AvailableBookEntity;
-import org.ikrotsyuk.mdsn.booktrackerservice.exception.exceptions.BookIsAlreadyAvailableException;
-import org.ikrotsyuk.mdsn.booktrackerservice.exception.exceptions.BookIsNotAvailableException;
-import org.ikrotsyuk.mdsn.booktrackerservice.exception.exceptions.BookNotFoundByIdException;
-import org.ikrotsyuk.mdsn.booktrackerservice.exception.exceptions.BooksNotFoundException;
+import org.ikrotsyuk.mdsn.booktrackerservice.exception.exceptions.*;
 import org.ikrotsyuk.mdsn.booktrackerservice.mappers.AvailableBooksMapper;
 import org.ikrotsyuk.mdsn.booktrackerservice.repository.AvailableBooksRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,19 +25,24 @@ public class TrackerService {
     }
 
     public List<AvailableBookDTO> getAvailableBooks(){
-        List<AvailableBookEntity> availableBookList = availableBooksRepository.findAllByBookAvailableTrue();
+        List<AvailableBookEntity> availableBookList = availableBooksRepository.findAllByIsAvailableTrue();
         if(availableBookList.isEmpty())
             throw new BooksNotFoundException();
         else
             return availableBooksMapper.toDTOList(availableBookList);
     }
 
-    public AvailableBookDTO takeBook(int id, LocalDateTime returnBy){
+    @Transactional
+    public AvailableBookDTO takeBook(int id, String returnByStr){
         Optional<AvailableBookEntity> availableBookEntity = availableBooksRepository.findById(id);
         if(availableBookEntity.isPresent()){
+            LocalDateTime returnBy = LocalDateTime.parse(returnByStr);
+            LocalDateTime borrowedAt = LocalDateTime.now();
+            if(returnBy.isBefore(borrowedAt))
+                throw new ReturnTimeIsBeforeBorrowException(returnBy, borrowedAt);
             AvailableBookEntity bookEntity = availableBookEntity.get();
-            if(bookEntity.isBookAvailable()){
-                bookEntity.setBookAvailable(false);
+            if(bookEntity.isAvailable()){
+                bookEntity.setAvailable(false);
                 bookEntity.setBorrowedAt(LocalDateTime.now());
                 bookEntity.setReturnBy(returnBy);
                 availableBooksRepository.save(bookEntity);
@@ -50,14 +53,15 @@ public class TrackerService {
             throw new BookNotFoundByIdException(id);
     }
 
+    @Transactional
     public AvailableBookDTO returnBook(int id){
         Optional<AvailableBookEntity> availableBookEntity = availableBooksRepository.findById(id);
         if(availableBookEntity.isPresent()){
             AvailableBookEntity bookEntity = availableBookEntity.get();
-            if(bookEntity.isBookAvailable())
+            if(bookEntity.isAvailable())
                 throw new BookIsAlreadyAvailableException(id);
             else{
-                bookEntity.setBookAvailable(true);
+                bookEntity.setAvailable(true);
                 bookEntity.setBorrowedAt(null);
                 bookEntity.setReturnBy(null);
                 availableBooksRepository.save(bookEntity);

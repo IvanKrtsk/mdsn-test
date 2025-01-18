@@ -1,9 +1,6 @@
 package org.ikrotsyuk.mdsn.booktrackerservice.exception;
 
-import org.ikrotsyuk.mdsn.booktrackerservice.exception.exceptions.BookIsAlreadyAvailableException;
-import org.ikrotsyuk.mdsn.booktrackerservice.exception.exceptions.BookIsNotAvailableException;
-import org.ikrotsyuk.mdsn.booktrackerservice.exception.exceptions.BookNotFoundByIdException;
-import org.ikrotsyuk.mdsn.booktrackerservice.exception.exceptions.BooksNotFoundException;
+import org.ikrotsyuk.mdsn.booktrackerservice.exception.exceptions.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -29,5 +26,10 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BooksNotFoundException.class)
     public ResponseEntity<String> handleBooksNotFoundException(BooksNotFoundException ex){
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(ReturnTimeIsBeforeBorrowException.class)
+    public ResponseEntity<String> handleReturnTimeIsBeforeBorrowException(ReturnTimeIsBeforeBorrowException ex){
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }
