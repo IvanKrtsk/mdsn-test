@@ -2,9 +2,11 @@ package org.ikrotsyuk.mdsn.bookstorageservice.service;
 
 import jakarta.transaction.Transactional;
 import org.ikrotsyuk.mdsn.bookstorageservice.dto.BookDTO;
+import org.ikrotsyuk.mdsn.bookstorageservice.dto.OperationDTO;
 import org.ikrotsyuk.mdsn.bookstorageservice.dto.SimpleBookDTO;
 import org.ikrotsyuk.mdsn.bookstorageservice.entity.BookEntity;
 import org.ikrotsyuk.mdsn.bookstorageservice.exception.exceptions.*;
+import org.ikrotsyuk.mdsn.bookstorageservice.kafka.KafkaProducer;
 import org.ikrotsyuk.mdsn.bookstorageservice.mappers.BookMapper;
 import org.ikrotsyuk.mdsn.bookstorageservice.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +19,13 @@ import java.util.Optional;
 public class StorageService {
     private final BookMapper bookMapper;
     private final BookRepository bookRepository;
+    private final KafkaProducer kafkaProducer;
 
     @Autowired
-    public StorageService(BookMapper bookMapper, BookRepository bookRepository){
+    public StorageService(BookMapper bookMapper, BookRepository bookRepository, KafkaProducer kafkaProducer){
         this.bookMapper = bookMapper;
         this.bookRepository = bookRepository;
+        this.kafkaProducer = kafkaProducer;
     }
 
     public List<BookDTO> getBookList(){
@@ -57,17 +61,20 @@ public class StorageService {
 
     @Transactional
     public BookDTO addBook(SimpleBookDTO simpleBookDTO){
+        final String ADD_MESSAGE = "add";
         if(bookRepository.existsByIsbn(simpleBookDTO.getIsbn())){
             BookEntity bookEntity = bookRepository.findFirstByIsbn(simpleBookDTO.getIsbn());
             if(bookEntity.getIsDeleted()) {
                 bookEntity.setIsDeleted(false);
                 bookRepository.save(bookEntity);
+                kafkaProducer.sendOperationMessage(new OperationDTO(bookEntity.getId(), ADD_MESSAGE));
                 return bookMapper.toDTO(bookEntity);
             }else
                 throw new BookWithSameISBNFoundException(simpleBookDTO.getIsbn());
         } else{
             BookDTO bookDTO = bookMapper.toDTO(simpleBookDTO);
-            bookRepository.save(bookMapper.toEntityWithDefault(bookDTO));
+            BookEntity bookEntity = bookRepository.save(bookMapper.toEntityWithDefault(bookDTO));
+            kafkaProducer.sendOperationMessage(new OperationDTO(bookEntity.getId(), ADD_MESSAGE));
             return bookDTO;
         }
 
@@ -82,6 +89,8 @@ public class StorageService {
                 throw new BookIsDeletedException(id);
             else {
                 bookEntity.setIsDeleted(true);
+                final String REMOVE_MESSAGE = "remove";
+                kafkaProducer.sendOperationMessage(new OperationDTO(bookEntity.getId(), REMOVE_MESSAGE));
                 return bookMapper.toDTO(bookEntity);
             }
         }

@@ -48,4 +48,14 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleBookIsDeletedException(BookIsDeletedException ex){
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT);
     }
+
+    @ExceptionHandler(SendAddOperationException.class)
+    public ResponseEntity<String> handleSendAddOperationException(SendAddOperationException ex){
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(SendRemoveOperationException.class)
+    public ResponseEntity<String> handleSendRemoveOperationException(SendAddOperationException ex){
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }

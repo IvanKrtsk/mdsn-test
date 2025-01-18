@@ -2,6 +2,7 @@ package org.ikrotsyuk.mdsn.booktrackerservice.service;
 
 import jakarta.transaction.Transactional;
 import org.ikrotsyuk.mdsn.booktrackerservice.dto.AvailableBookDTO;
+import org.ikrotsyuk.mdsn.booktrackerservice.dto.OperationDTO;
 import org.ikrotsyuk.mdsn.booktrackerservice.entity.AvailableBookEntity;
 import org.ikrotsyuk.mdsn.booktrackerservice.exception.exceptions.*;
 import org.ikrotsyuk.mdsn.booktrackerservice.mappers.AvailableBooksMapper;
@@ -69,5 +70,19 @@ public class TrackerService {
             }
         }else
             throw new BookNotFoundByIdException(id);
+    }
+
+    @Transactional
+    public void routeMessage(OperationDTO operationDTO){
+        int id = operationDTO.getId();
+        String operation = operationDTO.getOperation();
+        if(operation.equals("add")) {
+            AvailableBookEntity availableBookEntity = new AvailableBookEntity(id, true, null, null);
+            availableBooksRepository.save(availableBookEntity);
+        } else if (operation.equals("remove")){
+            if(availableBooksRepository.existsById(id)){
+                availableBooksRepository.deleteById(id);
+            }
+        }
     }
 }
