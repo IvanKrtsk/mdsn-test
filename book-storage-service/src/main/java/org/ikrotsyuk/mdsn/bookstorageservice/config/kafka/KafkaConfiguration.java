@@ -23,7 +23,7 @@ public class KafkaConfiguration {
 
     @Bean
     public NewTopic operationTopic(){
-        return new NewTopic("sendOperationToTrackerTopic", 3, (short) 1);
+        return new NewTopic("sendOperationToTrackerTopic", 1, (short) 1);
     }
 
     @Bean

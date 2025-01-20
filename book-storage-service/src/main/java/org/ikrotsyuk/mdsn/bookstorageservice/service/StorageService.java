@@ -75,6 +75,7 @@ public class StorageService {
             BookDTO bookDTO = bookMapper.toDTO(simpleBookDTO);
             BookEntity bookEntity = bookRepository.save(bookMapper.toEntityWithDefault(bookDTO));
             kafkaProducer.sendOperationMessage(new OperationDTO(bookEntity.getId(), ADD_MESSAGE));
+            bookDTO.setId(bookEntity.getId());
             return bookDTO;
         }
 
