@@ -30,7 +30,7 @@ public class StorageController {
         return ResponseEntity.ok(storageService.getBookList());
     }
 
-    @GetMapping("/book/{id}")
+    @GetMapping("/books/{id}")
     public ResponseEntity<?> getBookById(@PathVariable @Parameter(description = "book id") int id){
         return ResponseEntity.ok(storageService.getBookById(id));
     }
