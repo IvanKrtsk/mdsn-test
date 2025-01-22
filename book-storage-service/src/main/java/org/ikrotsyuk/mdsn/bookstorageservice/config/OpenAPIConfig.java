@@ -15,7 +15,6 @@ import java.util.List;
 @OpenAPIDefinition
 @Configuration
 public class OpenAPIConfig {
-
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
@@ -23,8 +22,8 @@ public class OpenAPIConfig {
                         new Server().url("http://localhost:8083"),
                         new Server().url("http://localhost:8082")))
                 .info(new Info().title("Book Storage Service API").version("1.0.0"))
-                .addSecurityItem(new SecurityRequirement().addList("JavaInUseSecurityScheme"))
-                .components(new Components().addSecuritySchemes("JavaInUseSecurityScheme", new SecurityScheme()
-                .name("JavaInUseSecurityScheme").type(SecurityScheme.Type.HTTP).scheme("bearer").bearerFormat("JWT")));
+                .addSecurityItem(new SecurityRequirement().addList("JWTAuthScheme"))
+                .components(new Components().addSecuritySchemes("JWTAuthScheme", new SecurityScheme()
+                .name("Authorization via bearer token(JWT)").type(SecurityScheme.Type.HTTP).scheme("bearer").bearerFormat("JWT")));
     }
 }
