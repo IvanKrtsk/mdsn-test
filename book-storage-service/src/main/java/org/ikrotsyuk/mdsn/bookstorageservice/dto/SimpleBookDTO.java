@@ -3,9 +3,11 @@ package org.ikrotsyuk.mdsn.bookstorageservice.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class SimpleBookDTO {
     @NotEmpty(message = "ISBN must not be empty")
     @Pattern(message = "Incorrect format (use ISBN-13)",
