@@ -14,7 +14,7 @@
     <properties>
         <maven-compiler.version>3.8.1</maven-compiler.version>
         <java-source.version>21</java-source.version>
-        <java.version>17</java.version>
+        <java-target.version>21</java-target.version>
         <postgres.version>42.7.4</postgres.version>
         <spring-cloud.version>2024.0.0</spring-cloud.version>
         <swagger.version>2.7.0</swagger.version>
@@ -22,6 +22,8 @@
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
         <lombok.version>1.18.36</lombok.version>
         <lombok-source-target.version>9</lombok-source-target.version>
+        <postgresql-testcontainers.version>1.20.4</postgresql-testcontainers.version>
+        <kafka-testcontainers.version>1.20.4</kafka-testcontainers.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -119,6 +121,34 @@
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-testcontainers</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql-testcontainers.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>kafka</artifactId>
+            <version>${kafka-testcontainers.version}</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -129,7 +159,7 @@
                 <version>${maven-compiler.version}</version>
                 <configuration>
                     <source>${java-source.version}</source>
-                    <target>${java.version}</target>
+                    <target>${java-target.version}</target>
                     <compilerArgs>
                         <arg>-parameters</arg>
                     </compilerArgs>

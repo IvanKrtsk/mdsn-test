@@ -22,7 +22,7 @@ public class AvailableBookEntity {
     @Id
     @Schema(description = "book id")
     @Column(name = "id")
-    private int id;
+    private Integer id;
     @Schema(description = "is the book available")
     @Column(name = "is_available")
     private boolean isAvailable;

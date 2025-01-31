@@ -14,7 +14,7 @@
 	<properties>
 		<maven-compiler.version>3.8.1</maven-compiler.version>
 		<java-source.version>21</java-source.version>
-		<java.version>17</java.version>
+		<java.version>21</java.version>
 		<postgres.version>42.7.4</postgres.version>
 		<spring-cloud.version>2024.0.0</spring-cloud.version>
 		<swagger.version>2.7.0</swagger.version>

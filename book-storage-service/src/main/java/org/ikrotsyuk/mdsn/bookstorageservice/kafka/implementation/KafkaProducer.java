@@ -1,16 +1,17 @@
-package org.ikrotsyuk.mdsn.bookstorageservice.kafka;
+package org.ikrotsyuk.mdsn.bookstorageservice.kafka.implementation;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.ikrotsyuk.mdsn.bookstorageservice.dto.OperationDTO;
 import org.ikrotsyuk.mdsn.bookstorageservice.exception.exceptions.SendAddOperationException;
 import org.ikrotsyuk.mdsn.bookstorageservice.exception.exceptions.SendRemoveOperationException;
+import org.ikrotsyuk.mdsn.bookstorageservice.kafka.IKafkaProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KafkaProducer {
+public class KafkaProducer implements IKafkaProducer {
     private final KafkaTemplate<String, String> kafkaTemplate;
     private final ObjectMapper objectMapper;
 
@@ -21,7 +22,7 @@ public class KafkaProducer {
     }
 
     public void sendOperationMessage(OperationDTO operationDTO){
-        String jsonMessage = null;
+        String jsonMessage;
         try {
             jsonMessage = objectMapper.writeValueAsString(operationDTO);
         } catch (JsonProcessingException e) {

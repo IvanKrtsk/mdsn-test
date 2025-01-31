@@ -1,14 +1,18 @@
 package org.ikrotsyuk.mdsn.booktrackerservice.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class AvailableBookDTO {
     @Schema(description = "book id")
-    private int id;
+    private Integer id;
     @Schema(description = "is the book available")
     private boolean isAvailable;
     @Schema(description = "time of taking")

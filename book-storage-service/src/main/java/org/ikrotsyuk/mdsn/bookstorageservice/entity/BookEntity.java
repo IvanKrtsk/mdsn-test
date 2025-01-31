@@ -2,10 +2,7 @@ package org.ikrotsyuk.mdsn.bookstorageservice.entity;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "books")
@@ -18,7 +15,7 @@ public class BookEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Schema(description = "book id")
     @Column(name = "id")
-    private int id;
+    private Integer id;
     @Schema(description = "book isbn")
     @Column(name = "isbn")
     private String isbn;

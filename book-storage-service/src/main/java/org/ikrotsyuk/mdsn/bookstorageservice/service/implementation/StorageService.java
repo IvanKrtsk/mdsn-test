@@ -1,4 +1,4 @@
-package org.ikrotsyuk.mdsn.bookstorageservice.service;
+package org.ikrotsyuk.mdsn.bookstorageservice.service.implementation;
 
 import jakarta.transaction.Transactional;
 import org.ikrotsyuk.mdsn.bookstorageservice.dto.BookDTO;
@@ -6,9 +6,10 @@ import org.ikrotsyuk.mdsn.bookstorageservice.dto.OperationDTO;
 import org.ikrotsyuk.mdsn.bookstorageservice.dto.SimpleBookDTO;
 import org.ikrotsyuk.mdsn.bookstorageservice.entity.BookEntity;
 import org.ikrotsyuk.mdsn.bookstorageservice.exception.exceptions.*;
-import org.ikrotsyuk.mdsn.bookstorageservice.kafka.KafkaProducer;
+import org.ikrotsyuk.mdsn.bookstorageservice.kafka.implementation.KafkaProducer;
 import org.ikrotsyuk.mdsn.bookstorageservice.mappers.BookMapper;
 import org.ikrotsyuk.mdsn.bookstorageservice.repository.BookRepository;
+import org.ikrotsyuk.mdsn.bookstorageservice.service.IStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class StorageService {
+public class StorageService implements IStorageService {
     private final BookMapper bookMapper;
     private final BookRepository bookRepository;
     private final KafkaProducer kafkaProducer;
@@ -109,7 +110,7 @@ public class StorageService {
                 oldBookEntity.setName(simpleBookDTO.getName());
                 oldBookEntity.setGenre(simpleBookDTO.getGenre());
                 oldBookEntity.setDescription(simpleBookDTO.getDescription());
-                oldBookEntity.setAuthor(oldBookEntity.getAuthor());
+                oldBookEntity.setAuthor(simpleBookDTO.getAuthor());
                 bookRepository.save(oldBookEntity);
                 return bookMapper.toDTO(oldBookEntity);
             }

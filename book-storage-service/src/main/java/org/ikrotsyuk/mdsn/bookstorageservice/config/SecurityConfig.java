@@ -15,6 +15,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Stream;
+
 @Configuration
 @EnableMethodSecurity
 public class SecurityConfig {

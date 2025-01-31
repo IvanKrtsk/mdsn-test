@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BookDTO {
     @NotNull
-    private int id;
+    private Integer id;
     @NotEmpty(message = "ISBN must not be empty")
     @Pattern(message = "Incorrect format (use ISBN-13)",
             regexp = "^978-[0-9]{1}-[0-9]{3}-[0-9]{5}-[0-9]$")
