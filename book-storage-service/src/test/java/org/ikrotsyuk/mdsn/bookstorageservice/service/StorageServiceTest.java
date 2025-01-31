@@ -36,6 +36,7 @@ class StorageServiceTest {
             .withPassword("postgrestest");
     @Container
     public static final ConfluentKafkaContainer kafkaContainer = new ConfluentKafkaContainer("confluentinc/cp-kafka:7.4.0");
+
     @Autowired
     private StorageService storageService;
     @Autowired

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/book-storage")
-public class StorageController implements IStorageController {
+public class StorageController implements IStorageController{
     private final StorageService storageService;
 
     @Autowired

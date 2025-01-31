@@ -1,4 +1,4 @@
-package org.ikrotsyuk.mdsn.booktrackerservice.service;
+package org.ikrotsyuk.mdsn.booktrackerservice.service.implementation;
 
 import jakarta.transaction.Transactional;
 import org.ikrotsyuk.mdsn.booktrackerservice.dto.AvailableBookDTO;
@@ -7,6 +7,7 @@ import org.ikrotsyuk.mdsn.booktrackerservice.entity.AvailableBookEntity;
 import org.ikrotsyuk.mdsn.booktrackerservice.exception.exceptions.*;
 import org.ikrotsyuk.mdsn.booktrackerservice.mappers.AvailableBooksMapper;
 import org.ikrotsyuk.mdsn.booktrackerservice.repository.AvailableBooksRepository;
+import org.ikrotsyuk.mdsn.booktrackerservice.service.ITrackerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class TrackerService {
+public class TrackerService implements ITrackerService {
     private final AvailableBooksRepository availableBooksRepository;
     private final AvailableBooksMapper availableBooksMapper;
 

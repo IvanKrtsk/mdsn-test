@@ -1,6 +1,6 @@
 --liquibase formatted sql
 --changeset author:ikrotsyuk
---comment create books db
+--comment create books table
 CREATE TABLE IF NOT EXISTS books (
     id SERIAL PRIMARY KEY,
     isbn VARCHAR(20) NOT NULL,

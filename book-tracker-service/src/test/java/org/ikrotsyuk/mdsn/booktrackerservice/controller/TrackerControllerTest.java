@@ -1,8 +1,8 @@
 package org.ikrotsyuk.mdsn.booktrackerservice.controller;
 
-import org.ikrotsyuk.mdsn.booktrackerservice.controllers.TrackerController;
+import org.ikrotsyuk.mdsn.booktrackerservice.controllers.implementation.TrackerController;
 import org.ikrotsyuk.mdsn.booktrackerservice.dto.AvailableBookDTO;
-import org.ikrotsyuk.mdsn.booktrackerservice.service.TrackerService;
+import org.ikrotsyuk.mdsn.booktrackerservice.service.implementation.TrackerService;
 import java.time.LocalDateTime;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
