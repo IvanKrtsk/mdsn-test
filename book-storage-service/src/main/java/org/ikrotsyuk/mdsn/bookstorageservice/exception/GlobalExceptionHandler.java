@@ -55,7 +55,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(SendRemoveOperationException.class)
-    public ResponseEntity<String> handleSendRemoveOperationException(SendAddOperationException ex){
+    public ResponseEntity<String> handleSendRemoveOperationException(SendRemoveOperationException ex){
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
