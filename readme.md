@@ -38,6 +38,8 @@ For Keycloak:
 * Create a new client(for example with name "springsecurity") and add a root url: http://localhost:8083, valid redirect URIs: http://localhost:8083/*
 * Create 2 realm roles with names: "ROLE_MANAGER", "ROLE_USER"
 
+### Before next steps make sure that you started Apache Kafka and Keycloak
+
 #### The next step is to install the application itself
 First of all do this to clone the repository: 
 `git clone https://github.com/IvanKrtsk/mdsn-test.git`
