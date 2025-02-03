@@ -1,0 +1,269 @@
+{
+	"info": {
+		"_postman_id": "6e6ee8b7-62e9-4b1d-aafc-19f7ba76b88e",
+		"name": "Book Tracker Service API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41753328"
+	},
+	"item": [
+		{
+			"name": "book-tracker",
+			"item": [
+				{
+					"name": "take",
+					"item": [
+						{
+							"name": "{id}",
+							"item": [
+								{
+									"name": "take Book",
+									"request": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/book-tracker/take/:id?returnBy=8523-35-38T82:30:63",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"book-tracker",
+												"take",
+												":id"
+											],
+											"query": [
+												{
+													"key": "returnBy",
+													"value": "8523-35-38T82:30:63",
+													"description": "(Required) "
+												}
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "<integer>",
+													"description": "(Required) book id"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "PATCH",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "*/*"
+													},
+													{
+														"key": "Authorization",
+														"value": "Bearer <token>",
+														"description": "Added as a part of security scheme: bearer"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/book-tracker/take/:id?returnBy=8523-35-38T82:30:63",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"book-tracker",
+														"take",
+														":id"
+													],
+													"query": [
+														{
+															"key": "returnBy",
+															"value": "8523-35-38T82:30:63",
+															"description": "(Required) "
+														}
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "*/*"
+												}
+											],
+											"cookie": [],
+											"body": "{}"
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "return{id}",
+					"item": [
+						{
+							"name": "return Book",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/book-tracker/return{{id}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"book-tracker",
+										"return{{id}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/book-tracker/return{{id}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"book-tracker",
+												"return{{id}}"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "all",
+					"item": [
+						{
+							"name": "get Available Books",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/book-tracker/all",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"book-tracker",
+										"all"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer <token>",
+												"description": "Added as a part of security scheme: bearer"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/book-tracker/all",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"book-tracker",
+												"all"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{}"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{bearerToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8083"
+		},
+		{
+			"key": "id",
+			"value": "<integer>"
+		}
+	]
+}
