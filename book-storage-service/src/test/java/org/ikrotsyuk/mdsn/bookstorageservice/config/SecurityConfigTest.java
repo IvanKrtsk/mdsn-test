@@ -1,7 +1,5 @@
 package org.ikrotsyuk.mdsn.bookstorageservice.config;
 
-import lombok.SneakyThrows;
-import lombok.With;
 import org.ikrotsyuk.mdsn.bookstorageservice.entity.BookEntity;
 import org.ikrotsyuk.mdsn.bookstorageservice.repository.BookRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,7 +18,6 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.kafka.ConfluentKafkaContainer;
 import org.testcontainers.lifecycle.Startables;
 
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -93,7 +90,7 @@ public class SecurityConfigTest {
     @Test
     @WithMockUser(roles = "USER")
     public void managerRoleMethodAccessWithUser_test() throws Exception {
-        mockMvc.perform(delete("/book-storage/delete/" + anyInt())
+        mockMvc.perform(delete("/book-storage/delete/" + 1)
                         .with(csrf()))
                 .andExpect(status().isForbidden());
     }
