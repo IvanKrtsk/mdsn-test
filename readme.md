@@ -31,7 +31,7 @@ For database:
 * Create a database with the name "mdsn" on the default PostgreSQL port(5432) with the default login and password "postgres"
 
 For Apache Kafka:
-* I added a "data" folder to the project. After you follow the installation tutorial, download and unzip the folder with kafka, you need to move the folder called "data" (from the directory "kafka-files") and place it in the directory "kafka_{version}". After that, replace the existing files "zookeeper.properties" and "server.properties" of the folder "kafka_{version}/config" with the ones I provided in the directory "kafka-files"
+* I added a "data" folder to the project. After you follow the installation tutorial, download and unzip the folder with kafka, you need to move the folder called "data" (from the directory "kafka-files") and place it in the directory "kafka_{version}" **!or add next folders: data/kafka-logs, data/zookeeper manually!**. After that, replace the existing files "zookeeper.properties" and "server.properties" of the folder "kafka_{version}/config" with the ones I provided in the directory "kafka-files"
 
 For Keycloak:
 * Create a new realm with name "mdsn"
