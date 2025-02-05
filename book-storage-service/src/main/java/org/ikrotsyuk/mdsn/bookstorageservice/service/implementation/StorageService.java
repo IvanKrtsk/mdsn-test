@@ -9,7 +9,6 @@ import org.ikrotsyuk.mdsn.bookstorageservice.exception.exceptions.*;
 import org.ikrotsyuk.mdsn.bookstorageservice.kafka.implementation.KafkaProducer;
 import org.ikrotsyuk.mdsn.bookstorageservice.mappers.BookMapper;
 import org.ikrotsyuk.mdsn.bookstorageservice.repository.BookRepository;
-import org.ikrotsyuk.mdsn.bookstorageservice.service.IStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class StorageService implements IStorageService {
+public class StorageService implements org.ikrotsyuk.mdsn.bookstorageservice.service.StorageService {
     private final BookMapper bookMapper;
     private final BookRepository bookRepository;
     private final KafkaProducer kafkaProducer;

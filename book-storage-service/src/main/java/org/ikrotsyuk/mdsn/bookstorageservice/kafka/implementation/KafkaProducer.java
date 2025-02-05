@@ -5,13 +5,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.ikrotsyuk.mdsn.bookstorageservice.dto.OperationDTO;
 import org.ikrotsyuk.mdsn.bookstorageservice.exception.exceptions.SendAddOperationException;
 import org.ikrotsyuk.mdsn.bookstorageservice.exception.exceptions.SendRemoveOperationException;
-import org.ikrotsyuk.mdsn.bookstorageservice.kafka.IKafkaProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KafkaProducer implements IKafkaProducer {
+public class KafkaProducer implements org.ikrotsyuk.mdsn.bookstorageservice.kafka.KafkaProducer {
     private final KafkaTemplate<String, String> kafkaTemplate;
     private final ObjectMapper objectMapper;
 

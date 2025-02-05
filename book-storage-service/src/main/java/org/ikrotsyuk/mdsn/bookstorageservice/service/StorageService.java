@@ -5,7 +5,7 @@ import org.ikrotsyuk.mdsn.bookstorageservice.dto.SimpleBookDTO;
 
 import java.util.List;
 
-public interface IStorageService {
+public interface StorageService {
     List<BookDTO> getBookList();
 
     BookDTO getBookById(int id);

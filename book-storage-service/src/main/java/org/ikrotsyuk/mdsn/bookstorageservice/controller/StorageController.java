@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 
 @Validated
-public interface IStorageController {
+public interface StorageController {
     @Operation(summary = "Create new book and add it to database")
     ResponseEntity<?> addBook(@Valid SimpleBookDTO bookDTO);
 

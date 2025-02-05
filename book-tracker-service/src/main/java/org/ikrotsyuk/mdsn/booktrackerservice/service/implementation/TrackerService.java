@@ -7,7 +7,6 @@ import org.ikrotsyuk.mdsn.booktrackerservice.entity.AvailableBookEntity;
 import org.ikrotsyuk.mdsn.booktrackerservice.exception.exceptions.*;
 import org.ikrotsyuk.mdsn.booktrackerservice.mappers.AvailableBooksMapper;
 import org.ikrotsyuk.mdsn.booktrackerservice.repository.AvailableBooksRepository;
-import org.ikrotsyuk.mdsn.booktrackerservice.service.ITrackerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class TrackerService implements ITrackerService {
+public class TrackerService implements org.ikrotsyuk.mdsn.booktrackerservice.service.TrackerService {
     private final AvailableBooksRepository availableBooksRepository;
     private final AvailableBooksMapper availableBooksMapper;
 

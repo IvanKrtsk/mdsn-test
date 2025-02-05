@@ -5,7 +5,7 @@ import org.ikrotsyuk.mdsn.booktrackerservice.dto.OperationDTO;
 
 import java.util.List;
 
-public interface ITrackerService {
+public interface TrackerService {
     List<AvailableBookDTO> getAvailableBooks();
 
     AvailableBookDTO takeBook(int id, String returnByStr);
